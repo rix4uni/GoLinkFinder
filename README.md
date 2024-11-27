@@ -2,9 +2,6 @@
 
 A minimal JS endpoint extractor, To extract endpoints in both HTML source and embedded javascript files. Useful for bug hunters, red teamers, infosec ninjas.
 
-## Demo
-[![asciicast](https://asciinema.org/a/HSM3Po0HC8s03XtXw3kw2UuHa.svg)](https://asciinema.org/a/HSM3Po0HC8s03XtXw3kw2UuHa)
-
 ## Installation
 ```
 go install github.com/rix4uni/GoLinkFinder@latest
