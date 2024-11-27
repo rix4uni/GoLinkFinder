@@ -1,63 +1,54 @@
-# GoLinkFinder
+## GoLinkFinder
 
-A minimal JS endpoint extractor
+A minimal JS endpoint extractor, To extract endpoints in both HTML source and embedded javascript files. Useful for bug hunters, red teamers, infosec ninjas.
 
-# Why?
-
-To extract endpoints in both HTML source and embedded javascript files. Useful for bug hunters, red teamers, infosec ninjas.
-
-# Version
-
-1.0.0-alpha
-
-# Usage?
-
-```[-d|--domain] is required
-usage: goLinkFinder [-h|--help] -d|--domain "<value>" [-o|--out "<value>"]
-                    GoLinkFinder
-Arguments:
-
-  -h  --help    Print help information
-  -d  --domain  Input a URL.
-  -o  --out     File name :  (e.g : output.txt)
-```
-
-# How?
-
-best used with grep
-
-```
-GoLinkFinder -d https://github.com | grep api
-```
-
-Output :
-
-```
- "https://api.github.com/_private/browser/stats"
- "https://api.github.com/_private/browser/errors"
-```
-
-you can easily pipe out its with your other tools.
-
-# Watch
-
+## Demo
 [![asciicast](https://asciinema.org/a/HSM3Po0HC8s03XtXw3kw2UuHa.svg)](https://asciinema.org/a/HSM3Po0HC8s03XtXw3kw2UuHa)
 
-# Requirements
-
-Go >= 1.13
-
-# Installation
-
+## Installation
 ```
-go install github.com/0xsha/GoLinkFinder@latest
+go install github.com/rix4uni/GoLinkFinder@latest
 ```
 
-# Feature request or found an issue?
+## Download prebuilt binaries
+```
+wget https://github.com/rix4uni/GoLinkFinder/releases/download/v0.0.1/GoLinkFinder-linux-amd64-0.0.1.tgz
+tar -xvzf GoLinkFinder-linux-amd64-0.0.1.tgz
+rm -rf GoLinkFinder-linux-amd64-0.0.1.tgz
+mv GoLinkFinder ~/go/bin/GoLinkFinder
+```
+Or download [binary release](https://github.com/rix4uni/GoLinkFinder/releases) for your platform.
 
-Please write a patch to fix it and then pull a request.
+## Compile from source
+```
+git clone --depth 1 github.com/rix4uni/GoLinkFinder.git
+cd GoLinkFinder; go install
+```
 
-# References
+## Usage
+```
+Usage of GoLinkFinder:
+      --H string          Set custom User-Agent. (default "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
+      --complete-url      Add the domain to relative URLs.
+  -c, --concurrency int   Concurrency level. (default 10)
+      --delay int         Delay between requests in milliseconds.
+  -d, --domain string     Input a URL.
+  -l, --list string       Input file containing a list of live subdomains to process.
+      --only-complete     Show only complete URLs starting with http:// or https://.
+  -o, --output string     File to write output results.
+      --silent            silent mode.
+      --timeout int       HTTP timeout in seconds. (default 10)
+      --verbose           Enable verbose mode.
+      --version           Print the version of the tool and exit.
+```
 
-Python implementation:
-https://github.com/GerbenJavado/LinkFinder
+## Examples
+Single Target:
+```
+▶ echo "http://testphp.vulnweb.com" | GoLinkFinder -silent
+```
+
+Multiple Targets:
+```
+cat targets.txt | GoLinkFinder -silent
+```
